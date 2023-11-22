@@ -13,9 +13,15 @@ import EmptyFilter from "../components/EmptyFilter";
 
 const Listings = () => {
     const [data, setData] = useState<PagedResult<Auction>>();
-    const params = useParamsStore(state => (
-        { pageNumber: state.pageNumber, pageSize: state.pageSize, searchTerm: state.searchTerm, orderBy: state.orderBy, filterBy: state.filterBy }
-    ), shallow);
+    const params = useParamsStore(state => ({
+        pageNumber: state.pageNumber,
+        pageSize: state.pageSize,
+        searchTerm: state.searchTerm,
+        orderBy: state.orderBy,
+        filterBy: state.filterBy,
+        seller: state.seller,
+        winner: state.winner
+    }), shallow);
     const setParams = useParamsStore(state => state.setParams);
     const url = qs.stringifyUrl({ url: '', query: params });
 
